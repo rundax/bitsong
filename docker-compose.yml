@@ -1,0 +1,13 @@
+version: "3.7"
+
+services:
+  test:
+    build:
+      context: docker
+      args:
+        TAG: 0.7.0-rc1
+    user: 1000:1000
+    volumes:
+    - ./data:/home/bitsong/.bitsongd:rw
+    env_file:
+      - .env
