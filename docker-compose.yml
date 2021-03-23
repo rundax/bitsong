@@ -6,7 +6,7 @@ services:
       context: docker
       args:
         TAG: ${BITSONG_TAG}
-    user: ${DC_MAP_UID}:1000
+    user: ${DOCKER_UID:-1000}:${DOCKER_GID:-1000}
     volumes:
     - ./data:/home/bitsong/.bitsongd:rw
     env_file:
