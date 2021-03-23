@@ -59,8 +59,9 @@ COPY ./docker-entrypoint.d /docker-entrypoint.d
 
 RUN chmod +x /docker-entrypoint.sh
 
-ENTRYPOINT ["/docker-entrypoint.sh"]
-
 USER 1000
+WORKDIR /home/bitsong
 
+STOPSIGNAL SIGINT
+ENTRYPOINT ["/docker-entrypoint.sh"]
 CMD ["bitsongd", "start"]
