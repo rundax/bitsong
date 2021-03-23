@@ -1,12 +1,12 @@
 version: "3.7"
 
 services:
-  test:
+  app:
     build:
       context: docker
       args:
-        TAG: 0.7.0-rc1
-    user: 1000:1000
+        TAG: ${BITSONG_TAG}
+    user: ${DC_MAP_UID}:1000
     volumes:
     - ./data:/home/bitsong/.bitsongd:rw
     env_file:

@@ -1,7 +1,13 @@
-
+init:
+	cp .env.dist .env
 
 build:
-	docker build \
-	-t test \
-	--build-arg TAG=0.7.0-rc1 \
-	docker/
+	docker-compose build
+
+up:
+	docker-compose up -d
+
+
+stop:
+	docker-compose stop
+
