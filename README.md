@@ -38,7 +38,7 @@ make up
 5. Recover bitsongcli wallet
 
 ```sh
-docker-compose run app bash
+docker-compose exec app bash
 bitsongcli keys add <your-wallet-name> --recover
 ```
 
