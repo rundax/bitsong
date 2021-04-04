@@ -2,15 +2,18 @@ version: "3.7"
 
 services:
   validator:
-    build:
-      context: docker
-      args:
-        TAG: ${BITSONG_TAG}
+    image: ${DOCKER_SERVER_HOST}:${DOCKER_SERVER_PORT}/${DOCKER_PROJECT_PATH}/validator:${DOCKER_IMAGE_VERSION}
     user: ${DOCKER_UID:-1000}:${DOCKER_GID:-1000}
     restart: unless-stopped
     volumes:
-    - ./data:/home/bitsong/.bitsongd:rw
-    - .t/mp:/home/bitsong/.bitsongcli:tw
+    - ./data/bitsongd:/home/bitsong/.bitsongd:rw
+    - ./data/bitsongcli:/home/bitsong/.bitsongcli:rw
+    ports:
+      - 26660:26660
     env_file:
       - .env
-  revard:
+  monitoring:
+    image: ${DOCKER_SERVER_HOST}:${DOCKER_SERVER_PORT}/${DOCKER_PROJECT_PATH}/monitoring:${DOCKER_IMAGE_VERSION}
+    restart: unless-stopped
+    env_file:
+      - .env
